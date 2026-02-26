@@ -21,12 +21,12 @@ public class ProductController {
     @Qualifier("storageProductService")
     private IProductService productService;
 
-    @GetMapping("/products")
+    @GetMapping("")
     public List<ProductDto> getAllProducts()  {
         return from(productService.getAllProducts());
     }
 
-    @GetMapping("/products/{id}")
+    @GetMapping("/{id}")
     public ProductDto getProduct(@PathVariable Long id)  {
         return from(productService.getProductById(id));
     }
@@ -74,6 +74,7 @@ public class ProductController {
             categoryDto.setName(category.getName());
             categoryDto.setDescription(category.getDescription());
             categoryDto.setId(category.getId());
+            productDto.setCategory(categoryDto);
         }
 
         return productDto;
